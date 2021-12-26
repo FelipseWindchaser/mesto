@@ -1,0 +1,15 @@
+.popup__container {
+  max-width: 566px;
+  height: 408px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 498px) {
+  .popup__container {
+    flex-direction: column-reverse;
+    max-width: 288px;
+  }
+}
