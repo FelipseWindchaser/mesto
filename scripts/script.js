@@ -6,8 +6,8 @@ let overlay = document.querySelector('.popup__overlay');
 let profileName = document.querySelector('.profile__title');
 let profileInfo = document.querySelector('.profile__subtitle');
 let profileForm = document.querySelector('.popup__container')
-let editProfileName = document.querySelector('.popup__form-field_profile-name');
-let editProfileInfo = document.querySelector('.popup__form-field_profile-info');
+let editProfileName = document.querySelector('.popup__form-field_type_name');
+let editProfileInfo = document.querySelector('.popup__form-field_type_info');
 // functions
 function editName() {
   editProfileName.value = profileName.textContent; 

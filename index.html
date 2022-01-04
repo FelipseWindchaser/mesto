@@ -9,7 +9,7 @@
 </head>
 <body class="page">
   <header class="header">
-    <a class="header__link" href="#" target="_blank">
+    <a class="header__link" href="#" target="_blank" rel="noopener">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип">
     </a>
   </header>
@@ -28,42 +28,42 @@
         <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="photos__description">
           <h2 class="photos__caption">Карачаевск</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
       <article class="photos__card">
         <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
         <div class="photos__description">
           <h2 class="photos__caption">Гора Эльбрус</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
       <article class="photos__card">
         <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
         <div class="photos__description">
           <h2 class="photos__caption">Домбай</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
       <article class="photos__card">
         <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
         <div class="photos__description">
           <h2 class="photos__caption">Гора Эльбрус</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
       <article class="photos__card">
         <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
         <div class="photos__description">
           <h2 class="photos__caption">Домбай</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
       <article class="photos__card">
         <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск-Черкассия">
         <div class="photos__description">
           <h2 class="photos__caption">Карачаево-Черкессия</h2>
-          <button class="photos__like-button" type="button"></button>
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
         </div>
       </article>
     </section>
@@ -76,11 +76,11 @@
     <form class="popup__container" name="popup__form">
       <fieldset class="popup__form">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <input class="popup__form-field popup__form-field_profile-name" type="text" name="popup__form-field" placeholder="Имя">
-        <input class="popup__form-field popup__form-field_profile-info" type="text" name="popup__form-field" placeholder="О себе">
+        <input class="popup__form-field popup__form-field_type_name" type="text" name="profile-name" placeholder="Имя">
+        <input class="popup__form-field popup__form-field_type_info" type="text" name="profile-info" placeholder="О себе">
         <button class="popup__form-button" type="submit" name="popup__form-button">Сохранить</button>
       </fieldset>
-   <button class="popup__close-button" type="button"></button>
+      <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
     </form>
   </div>
   <script src="./scripts/script.js"></script>
