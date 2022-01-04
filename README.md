@@ -5,7 +5,7 @@
 Яндекс Практикум, Проектная работа № 4.
 Отработка верстки форм, основ Джаваскрипт.
 
-- [Ссылка на проект в gitPages](https://felipsewindchaser.github.io/mesto/)
+- <a href="https://felipsewindchaser.github.io/mesto/" target="_blank">[Ссылка на проект в gitPages]</a>
 
 **Figma**
 
