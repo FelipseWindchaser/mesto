@@ -6,20 +6,17 @@ let overlay = document.querySelector('.popup__overlay');
 let profileName = document.querySelector('.profile__title');
 let profileInfo = document.querySelector('.profile__subtitle');
 let profileForm = document.querySelector('.popup__container')
-let editProfileName = document.querySelector('.popup__profile-name');
-let editProfileInfo = document.querySelector('.popup__profile-info');
-let saveButton = document.querySelector('.profile__form-button');
-let likeButtons = document.querySelectorAll('.photos__like-button');
+let editProfileName = document.querySelector('.popup__form-field_profile-name');
+let editProfileInfo = document.querySelector('.popup__form-field_profile-info');
 // functions
 function editName() {
-  editProfileName.setAttribute('value', profileName.textContent);
-  editProfileInfo.setAttribute('value', profileInfo.textContent);
+  editProfileName.value = profileName.textContent; 
+  editProfileInfo.value = profileInfo.textContent;
 };
-
 function openProfile() {
-  popup.classList.add('popup_active');
   editName();
-};
+  popup.classList.add('popup_active');
+}
 
 function closeProfile() {
   popup.classList.remove('popup_active');
@@ -31,13 +28,11 @@ function saveProfileChanges(evt) {
   profileInfo.textContent = editProfileInfo.value;
   closeProfile();
 };
-
 // listeners
 editButton.addEventListener('click', openProfile);
 closeButton.addEventListener('click', closeProfile);
 overlay.addEventListener('click', closeProfile);
 profileForm.addEventListener('submit', saveProfileChanges);
-likeButtons.forEach(likeButton =>
-  likeButton.addEventListener('click', () => likeButton.classList.toggle('photos__like-button_active')));
+
 
 

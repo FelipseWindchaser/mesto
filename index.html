@@ -9,61 +9,63 @@
 </head>
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    <a class="header__link" href="#" target="_blank">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </a>
   </header>
   <main class="main-content">
     <section class="profile">
       <img class="profile__picture" src="./images/profile__picture.png" alt="Аватар">
       <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
+          <button class="profile__edit-button" aria-label="Редактировать" type="button"></button>
+        <h2 class="profile__subtitle">Исследователь океана</h2>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="photos">
-      <figure class="photos__card">
+      <article class="photos__card">
         <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="photos__description">
-          <p class="photos__caption">Карачаевск</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Карачаевск</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
-      <figure class="photos__card">
+      </article>
+      <article class="photos__card">
         <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
         <div class="photos__description">
-          <p class="photos__caption">Гора Эльбрус</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Гора Эльбрус</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
-      <figure class="photos__card">
+      </article>
+      <article class="photos__card">
         <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
         <div class="photos__description">
-          <p class="photos__caption">Домбай</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Домбай</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
-      <figure class="photos__card">
+      </article>
+      <article class="photos__card">
         <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
         <div class="photos__description">
-          <p class="photos__caption">Гора Эльбрус</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Гора Эльбрус</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
-      <figure class="photos__card">
+      </article>
+      <article class="photos__card">
         <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
         <div class="photos__description">
-          <p class="photos__caption">Домбай</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Домбай</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
-      <figure class="photos__card">
+      </article>
+      <article class="photos__card">
         <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск-Черкассия">
         <div class="photos__description">
-          <p class="photos__caption">Карачаево-Черкессия</p>
-          <button class="photos__like-button"></button>
+          <h2 class="photos__caption">Карачаево-Черкессия</h2>
+          <button class="photos__like-button" type="button"></button>
         </div>
-      </figure>
+      </article>
     </section>
   </main>
   <footer class="footer">
@@ -71,16 +73,16 @@
   </footer>
   <div class="popup">
     <div class="popup__overlay"></div>
-    <form class="popup__container">
+    <form class="popup__container" name="popup__form">
       <fieldset class="popup__form">
-        <p class="popup__title">Редактировать профиль</p>
-        <input class="popup__form-field popup__profile-name" type="text" name="popup__form" placeholder="Имя">
-        <input class="popup__form-field popup__profile-info" type="text" name="popup__form" placeholder="О себе">
-        <input class="popup__form-button" type="submit" name="popup__form" value="Сохранить">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <input class="popup__form-field popup__form-field_profile-name" type="text" name="popup__form-field" placeholder="Имя">
+        <input class="popup__form-field popup__form-field_profile-info" type="text" name="popup__form-field" placeholder="О себе">
+        <button class="popup__form-button" type="submit" name="popup__form-button">Сохранить</button>
       </fieldset>
-   <button class="popup__close-button"></button>
+   <button class="popup__close-button" type="button"></button>
     </form>
   </div>
-  <script src="./script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
