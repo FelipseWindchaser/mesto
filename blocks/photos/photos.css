@@ -9,3 +9,8 @@
     justify-content: center;
   }
 }
+@media screen and (max-width: 600px) and (min-width: 581px) {
+  .photos {
+    padding: 0 10px;
+  }
+}

@@ -4,8 +4,17 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 980px) {
+  .header {
+    max-width: 584px;
+    width: 100%;
+    margin: 45px auto 0;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .header {
+    max-width: 282px;
     margin-top: 28px;
   }
 }

@@ -16,8 +16,7 @@
     padding: 0 40px;
   }
 }
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 660px) {
   .page {
     padding: 0;
   }

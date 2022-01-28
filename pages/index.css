@@ -18,6 +18,7 @@
 @import url(../blocks/photos/photos.css);
 @import url(../blocks/photos/__card/photos__card.css);
 @import url(../blocks/photos/__item/photos__item.css);
+@import url(../blocks/photos/__overflow/photos__overflow.css);
 @import url(../blocks/photos/__description/photos__description.css);
 @import url(../blocks/photos/__caption/photos__caption.css);
 @import url(../blocks/photos/__like-button/photos__like-button.css);
@@ -35,3 +36,11 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__form-button/popup__form-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/photos/__delete-button/photos__delete-button.css);
+/* view picture popup */
+@import url(../blocks/popup/__overlay/_picture/popup__overlay_picture.css);
+@import url(../blocks/popup-picture/__caption/popup-picture__caption.css);
+@import url(../blocks/popup-picture/__item/popup-picture__item.css);
+@import url(../blocks/popup-picture/popup-picture.css);
+@import url(../blocks/popup-picture/__container/popup-picture__container.css);
+@import url(../blocks/popup-picture/__button/popup-picture__button.css);

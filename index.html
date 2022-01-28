@@ -21,57 +21,28 @@
           <button class="profile__edit-button" aria-label="Редактировать" type="button"></button>
         <h2 class="profile__subtitle">Исследователь океана</h2>
       </div>
-      <button class="profile__add-button" type="button"></button>
+      <button class="profile__add-button" aria-label="Добавить картинку" type="button"></button>
     </section>
     <section class="photos">
-      <article class="photos__card">
-        <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск">
-        <div class="photos__description">
-          <h2 class="photos__caption">Карачаевск</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
-      <article class="photos__card">
-        <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
-        <div class="photos__description">
-          <h2 class="photos__caption">Гора Эльбрус</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
-      <article class="photos__card">
-        <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
-        <div class="photos__description">
-          <h2 class="photos__caption">Домбай</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
-      <article class="photos__card">
-        <img class="photos__item" src="./images/elbrus.jpg" alt="Эльбрус">
-        <div class="photos__description">
-          <h2 class="photos__caption">Гора Эльбрус</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
-      <article class="photos__card">
-        <img class="photos__item" src="./images/dombay.jpg" alt="Домбай">
-        <div class="photos__description">
-          <h2 class="photos__caption">Домбай</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
-      <article class="photos__card">
-        <img class="photos__item" src="./images/karachaevsk.jpg" alt="Карачаевск-Черкассия">
-        <div class="photos__description">
-          <h2 class="photos__caption">Карачаево-Черкессия</h2>
-          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
-        </div>
-      </article>
+      
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <!-- add initial photos -->
+  <template class="card-template">
+    <article class="photos__card">
+      <div class="photos__overflow"><img class="photos__item" src="#" alt="Картинка"></div>
+      <button class="photos__delete-button" aria-label="Удалить картинку" type="button"></button>
+      <div class="photos__description">
+        <h2 class="photos__caption">Место</h2>
+        <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
+      </div>
+    </article>
+  </template>
+  <!-- profile form -->
+  <div class="popup popup_edit-profile">
     <div class="popup__overlay"></div>
     <form class="popup__container" name="popup__form">
       <fieldset class="popup__form">
@@ -82,6 +53,27 @@
       </fieldset>
       <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
     </form>
+  </div>
+  <div class="popup popup_add-image">
+    <div class="popup__overlay"></div>
+    <form class="popup__container" name="popup__form">
+      <fieldset class="popup__form">
+        <h3 class="popup__title">Новое место</h3>
+        <input class="popup__form-field popup__form-field_type_name" type="text" name="profile-name" placeholder="Название">
+        <input class="popup__form-field popup__form-field_type_info" type="text" name="profile-info" placeholder="Ссылка на картинку">
+        <button class="popup__form-button" type="submit" name="popup__form-button">Создать</button>
+      </fieldset>
+      <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
+    </form>
+  </div>
+ <!-- view photo -->
+  <div class="popup popup-picture">
+    <div class="popup-picture__overlay popup__overlay_picture"></div>
+    <div class ="popup-picture__container">
+      <img class="popup-picture__item" src="#" alt="Картинка">
+      <p class="popup-picture__caption"></p>
+      <button class="popup-picture__button popup__close-button" aria-label="Закрыть" type="button"></button>
+    </div>
   </div>
   <script src="./scripts/script.js"></script>
 </body>
