@@ -24,6 +24,10 @@ function renderCard(card) {
   cardsContainer.prepend(card);
 }
 
+function reverseCard(card) {
+  cardsContainer.append(card);
+}
+
 function addCard(text, url) {
   const card = cardTemplate.cloneNode(true);
   const cardPicture = card.querySelector('.photos__item');
@@ -37,7 +41,7 @@ function addCard(text, url) {
   delBtn.addEventListener('click', (evt) => {
     evt.target.closest('.photos__card').remove();
   });
-  renderCard(card);
+  return card;
 };
 
 function viewPopupImg(text, url) {
@@ -49,7 +53,7 @@ function viewPopupImg(text, url) {
 
 function loadCards(cardList) {
   cardList.forEach(item => {
-    addCard(item.name, item.link);
+    reverseCard(addCard(item.name, item.link));
   });
 };
 
@@ -71,20 +75,18 @@ function saveProfileChanges(evt) {
  function openPopup(popup) {
   popup.classList.add('popup_active');
  };
+ 
  function closePopup(popup) {
   popup.classList.remove('popup_active');
  };
 
  function saveImage(evt) {
   evt.preventDefault();
-  addCard(addImgName.value, addImgUrl.value);
+  renderCard(addCard(addImgName.value, addImgUrl.value));
   closePopup(popupAddImage);
   addImgName.value = '';
   addImgUrl.value = '';
   };
-
-
-
 
 addImgBtn.addEventListener('click', () => openPopup(popupAddImage));
 closeImgBtn.addEventListener('click', () => closePopup(popupAddImage));
