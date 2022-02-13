@@ -1,0 +1,15 @@
+.popup__form-error {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: absolute;
+  top: 28px;
+  left: 36px;
+}
+@media screen and (max-width: 498px) {
+  .popup__form-error {
+    left: 22px;
+  }
+}

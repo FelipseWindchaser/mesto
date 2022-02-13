@@ -20,6 +20,8 @@ const popupImgCloseBtn = popupImg.querySelector('.popup__close-button');
 const popupCaption = popupImg.querySelector('.popup-picture__caption');
 const popupImage = popupImg.querySelector('.popup-picture__item');
 
+
+
 function renderCard(card) {
   cardsContainer.prepend(card);
 }
@@ -72,12 +74,27 @@ function saveProfileChanges(evt) {
   closePopup(popupEditProfile);
 };
 
+function closePopupOnEsc(evt) {
+    if (evt.key === 'Escape') {
+    const popupActive = document.querySelector('.popup_active');
+    closePopup(popupActive);
+  }
+}
+function closePopupOnOverlay() {
+  const popupActive = document.querySelector('.popup_active');
+  closePopup(popupActive);
+} 
+
  function openPopup(popup) {
   popup.classList.add('popup_active');
+  document.addEventListener('keydown', closePopupOnEsc);
+  popup.querySelector('.popup__overlay').addEventListener('click', closePopupOnOverlay);
  };
  
  function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', closePopupOnEsc);
+  popup.querySelector('.popup__overlay').removeEventListener('click', closePopupOnOverlay);
  };
 
  function saveImage(evt) {
@@ -88,6 +105,7 @@ function saveProfileChanges(evt) {
   addImgUrl.value = '';
   };
 
+ 
 addImgBtn.addEventListener('click', () => openPopup(popupAddImage));
 closeImgBtn.addEventListener('click', () => closePopup(popupAddImage));
 editButton.addEventListener('click', openProfile);
