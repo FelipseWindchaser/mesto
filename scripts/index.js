@@ -104,7 +104,6 @@ function closePopupOnOverlay() {
   addImgName.value = '';
   addImgUrl.value = '';
   };
-
  
 addImgBtn.addEventListener('click', () => openPopup(popupAddImage));
 closeImgBtn.addEventListener('click', () => closePopup(popupAddImage));
