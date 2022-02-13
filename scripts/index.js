@@ -19,6 +19,10 @@ const popupImg = document.querySelector('.popup-picture');
 const popupImgCloseBtn = popupImg.querySelector('.popup__close-button');
 const popupCaption = popupImg.querySelector('.popup-picture__caption');
 const popupImage = popupImg.querySelector('.popup-picture__item');
+const saveImgBtn = addImgForm.querySelector('.popup__form-button');
+const popupProfileOverlay = popupEditProfile.querySelector('.popup__overlay');
+const popupOpenImgOverlay = popupImg.querySelector('.popup__overlay');
+const popupAddImgOverlay = popupAddImage.querySelector('.popup__overlay');
 
 
 
@@ -80,21 +84,15 @@ function closePopupOnEsc(evt) {
     closePopup(popupActive);
   }
 }
-function closePopupOnOverlay() {
-  const popupActive = document.querySelector('.popup_active');
-  closePopup(popupActive);
-} 
 
  function openPopup(popup) {
   popup.classList.add('popup_active');
   document.addEventListener('keydown', closePopupOnEsc);
-  popup.querySelector('.popup__overlay').addEventListener('click', closePopupOnOverlay);
  };
  
  function closePopup(popup) {
   popup.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupOnEsc);
-  popup.querySelector('.popup__overlay').removeEventListener('click', closePopupOnOverlay);
  };
 
  function saveImage(evt) {
@@ -103,6 +101,9 @@ function closePopupOnOverlay() {
   closePopup(popupAddImage);
   addImgName.value = '';
   addImgUrl.value = '';
+  console.log(saveImgBtn);
+  saveImgBtn.classList.add('popup__form-button_disabled');
+  saveImgBtn.disabled = true;
   };
  
 addImgBtn.addEventListener('click', () => openPopup(popupAddImage));
@@ -112,4 +113,6 @@ closeButton.addEventListener('click', () => closePopup(popupEditProfile));
 profileForm.addEventListener('submit', saveProfileChanges);
 addImgForm.addEventListener('submit', saveImage);
 popupImgCloseBtn.addEventListener('click', () => closePopup(popupImg));
-
+popupProfileOverlay.addEventListener('click', () => closePopup(popupEditProfile));
+popupAddImgOverlay.addEventListener('click', () => closePopup(popupAddImage));
+popupOpenImgOverlay.addEventListener('click', () => closePopup(popupImg));
