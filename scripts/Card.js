@@ -35,7 +35,7 @@ export class Card {
     return this._element;
   }
 
-  _setPopupProps() {
+  _handleImageClick() {
     popupCaption.textContent = this._text;
     popupImage.src = this._url;
     popupImage.alt = 'Картинка ' + this._text;
@@ -47,7 +47,7 @@ export class Card {
     this._deleteBtn.addEventListener('click', (evt) => {
       evt.target.closest(Card.selectors.card).remove();
     });
-    this._cardImg.addEventListener('click', () => this._setPopupProps());
+    this._cardImg.addEventListener('click', () => this._handleImageClick());
   }
   
 }
