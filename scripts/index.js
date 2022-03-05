@@ -1,3 +1,6 @@
+import { initialCards, validatorSettings } from "./Data.js";
+import { Card } from "./Card.js";
+import { FormValidator } from "./FromValidator.js";
 const editButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_edit-profile');
 const closeButton = document.querySelector('.popup__close-button');
@@ -6,24 +9,19 @@ const info = document.querySelector('.profile__subtitle');
 const profileForm = document.querySelector('.popup__container');
 const editTitle = popupEditProfile.querySelector('.popup__form-field_type_name');
 const editInfo = popupEditProfile.querySelector('.popup__form-field_type_info');
-const cardTemplate = document.querySelector('.card-template').content;
 const cardsContainer = document.querySelector('.photos');
 const popupAddImage = document.querySelector('.popup_add-image');
 const addImgBtn = document.querySelector('.profile__add-button');
 const closeImgBtn = popupAddImage.querySelector('.popup__close-button');
 const addImgName = popupAddImage.querySelector('.popup__form-field_type_name');
 const addImgUrl = popupAddImage.querySelector('.popup__form-field_type_info');
-const imgName = document.querySelector('.photos__caption');
 const addImgForm = popupAddImage.querySelector('.popup__container');
-const popupImg = document.querySelector('.popup-picture');
-const popupImgCloseBtn = popupImg.querySelector('.popup__close-button');
-const popupCaption = popupImg.querySelector('.popup-picture__caption');
-const popupImage = popupImg.querySelector('.popup-picture__item');
+const popupImgs = document.querySelector('.popup-picture');
+const popupImgCloseBtn = popupImgs.querySelector('.popup__close-button');
 const saveImgBtn = addImgForm.querySelector('.popup__form-button');
 const popupProfileOverlay = popupEditProfile.querySelector('.popup__overlay');
-const popupOpenImgOverlay = popupImg.querySelector('.popup__overlay');
+const popupOpenImgOverlay = popupImgs.querySelector('.popup__overlay');
 const popupAddImgOverlay = popupAddImage.querySelector('.popup__overlay');
-
 
 
 function renderCard(card) {
@@ -35,26 +33,9 @@ function reverseCard(card) {
 }
 
 function addCard(text, url) {
-  const card = cardTemplate.cloneNode(true);
-  const cardPicture = card.querySelector('.photos__item');
-  const likeBtn = card.querySelector('.photos__like-button');
-  const delBtn = card.querySelector('.photos__delete-button');
-  cardPicture.src = url;
-  cardPicture.alt = 'Картинка ' + text;
-  card.querySelector('.photos__caption').textContent = text;
-  likeBtn.addEventListener('click', () => likeBtn.classList.toggle('photos__like-button_active'));
-  cardPicture.addEventListener('click', () => viewPopupImg(text, url));
-  delBtn.addEventListener('click', (evt) => {
-    evt.target.closest('.photos__card').remove();
-  });
-  return card;
-};
-
-function viewPopupImg(text, url) {
-  popupCaption.textContent = text;
-  popupImage.src = url;
-  popupImage.alt = 'Картинка ' + text;
-  openPopup(popupImg);
+  const card = new Card(text, url, openPopup);
+  //console.log(card);
+  return card.generateCard(text, url);
 };
 
 function loadCards(cardList) {
@@ -105,6 +86,20 @@ function closePopupOnEsc(evt) {
   saveImgBtn.classList.add('popup__form-button_disabled');
   saveImgBtn.disabled = true;
   };
+
+function enableValidation({formSelector, ...rest}) {
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((formListElement) => {
+    formListElement.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+    });
+    const validator = new FormValidator(rest, formListElement);   
+    validator.setEventListeners();
+  });
+};
+
+enableValidation(validatorSettings);
+
  
 addImgBtn.addEventListener('click', () => openPopup(popupAddImage));
 closeImgBtn.addEventListener('click', () => closePopup(popupAddImage));
@@ -112,7 +107,7 @@ editButton.addEventListener('click', openProfile);
 closeButton.addEventListener('click', () => closePopup(popupEditProfile));
 profileForm.addEventListener('submit', saveProfileChanges);
 addImgForm.addEventListener('submit', saveImage);
-popupImgCloseBtn.addEventListener('click', () => closePopup(popupImg));
+popupImgCloseBtn.addEventListener('click', () => closePopup(popupImgs));
 popupProfileOverlay.addEventListener('click', () => closePopup(popupEditProfile));
 popupAddImgOverlay.addEventListener('click', () => closePopup(popupAddImage));
-popupOpenImgOverlay.addEventListener('click', () => closePopup(popupImg));
+popupOpenImgOverlay.addEventListener('click', () => closePopup(popupImgs));

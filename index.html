@@ -30,10 +30,12 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
-  <!-- add initial photos -->
+  <!-- card-template -->
   <template class="card-template">
     <article class="photos__card">
-      <div class="photos__overflow"><img class="photos__item" src="#" alt="Картинка"></div>
+      <div class="photos__overflow">
+        <img class="photos__item" src="#" alt="Картинка">
+      </div>
       <button class="photos__delete-button" aria-label="Удалить картинку" type="button"></button>
       <div class="photos__description">
         <h2 class="photos__caption">Место</h2>
@@ -87,8 +89,8 @@
       <button class="popup-picture__button popup__close-button" aria-label="Закрыть" type="button"></button>
     </div>
   </div>
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/Card.js"></script>
+  <script type="module" src="./scripts/FromValidator.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>
