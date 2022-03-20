@@ -1,7 +1,3 @@
-const popupImgs = document.querySelector('.popup-picture');
-const popupCaption = popupImgs.querySelector('.popup-picture__caption');
-const popupImage = popupImgs.querySelector('.popup-picture__item');
-
 export class Card {
 
   static selectors = {
@@ -35,11 +31,8 @@ export class Card {
     return this._element;
   }
 
-  _handleImageClick() {
-    popupCaption.textContent = this._text;
-    popupImage.src = this._url;
-    popupImage.alt = 'Картинка ' + this._text;
-    this._openPopup(popupImgs);
+  getData() {
+    return {text: this._text, url: this._url};
   }
 
   _setEventListeners() {
@@ -47,7 +40,6 @@ export class Card {
     this._deleteBtn.addEventListener('click', (evt) => {
       evt.target.closest(Card.selectors.card).remove();
     });
-    this._cardImg.addEventListener('click', () => this._handleImageClick());
+    this._cardImg.addEventListener('click', () => this._openPopup());
   }
-  
 }

@@ -57,3 +57,18 @@ export const validatorSettings = {
   inactiveButtonClass: 'popup__form-button_disabled',
   inputErrorClass: 'popup__form-field-error'
 };
+
+export const editButton = document.querySelector('.profile__edit-button');
+export const popupEditProfile = '.popup_edit-profile';
+export const popupPicture = '.popup-picture';
+export const userInfoSelectors = {name: '.profile__title', info: '.profile__subtitle'};
+export const profileForm = document.querySelector('.popup__container');
+export const editTitle = document.querySelector(popupEditProfile).querySelector('.popup__form-field_type_name');
+export const editInfo = document.querySelector(popupEditProfile).querySelector('.popup__form-field_type_info');
+export const cardsContainer = '.photos';
+export const popupAddImage = '.popup_add-image';
+export const addImgBtn = document.querySelector('.profile__add-button');
+export const addImgName = document.querySelector(popupAddImage).querySelector('.popup__form-field_type_name');
+export const addImgUrl = document.querySelector(popupAddImage).querySelector('.popup__form-field_type_info');
+export const addImgForm = document.querySelector(popupAddImage).querySelector('.popup__container');
+export const formValidators = {};
