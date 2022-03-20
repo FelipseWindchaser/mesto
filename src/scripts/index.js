@@ -1,11 +1,13 @@
-import { initialCards, validatorSettings } from "./Data.js";
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import '../pages/index.css';
+import { initialCards, validatorSettings } from './Data.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 import Section from './Section.js'
 import {
   userInfoSelectors,
   editButton,
   popupEditProfile,
+  profileForm,
   popupPicture,
   cardsContainer,
   popupAddImage,
@@ -67,7 +69,7 @@ addImgBtn.addEventListener('click', () => {
 
 editButton.addEventListener('click', () => {
   popupProfileForm.setDefaultParams(userInfo.getUserInfo());
-  formValidators[addImgForm.getAttribute('name')].resetValidation();
+  formValidators[profileForm.getAttribute('name')].resetValidation();
   popupProfileForm.openPopup();
 });
 
