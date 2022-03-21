@@ -68,7 +68,17 @@ export const editInfo = document.querySelector(popupEditProfile).querySelector('
 export const cardsContainer = '.photos';
 export const popupAddImage = '.popup_add-image';
 export const addImgBtn = document.querySelector('.profile__add-button');
-export const addImgName = document.querySelector(popupAddImage).querySelector('.popup__form-field_type_name');
-export const addImgUrl = document.querySelector(popupAddImage).querySelector('.popup__form-field_type_info');
 export const addImgForm = document.querySelector(popupAddImage).querySelector('.popup__container');
 export const formValidators = {};
+
+export const cardSelectors = {
+  template: '.card-template',
+  image: '.photos__item',
+  likeBtn: '.photos__like-button',
+  deleteBtn: '.photos__delete-button',
+  toggleLikeBtn: 'photos__like-button_active',
+  card: '.photos__card',
+  caption: '.photos__caption',
+  popupCaption: '.popup-picture__caption',
+  popupImage: '.popup-picture__item',
+};

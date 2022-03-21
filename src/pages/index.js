@@ -1,8 +1,8 @@
 import '../pages/index.css';
-import { initialCards, validatorSettings } from './Data.js';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import Section from './Section.js'
+import { initialCards, validatorSettings } from '../utils/constants.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import Section from '../components/Section.js'
 import {
   userInfoSelectors,
   editButton,
@@ -12,30 +12,25 @@ import {
   cardsContainer,
   popupAddImage,
   addImgBtn,
-  addImgName,
-  addImgUrl,
   addImgForm,
   formValidators
-} from './Data.js';
+} from '../utils/constants.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-
-const imageFormPopup = new Popup(popupAddImage);
-imageFormPopup.setEventListeners();
 const picturePopup = new PopupWithImage(popupPicture); 
 picturePopup.setEventListeners();
 
 function handleCardClick(item) {
   picturePopup.openPopup(item);
 }
-
-const cardList = new Section({items: initialCards, renderer: (text, url) => {
+function createCard(text, url) {
   const card = new Card(text, url, () => handleCardClick(card.getData()));
-  const cardElement = card.generateCard();
-  cardList.addItem(cardElement);
+  return card.generateCard();
+}
+const cardList = new Section({items: initialCards, renderer: (text, url) => {
+  cardList.addItem(createCard(text, url));
 }}, cardsContainer);
 
 cardList.loadItems();
@@ -47,9 +42,8 @@ const popupProfileForm = new PopupWithForm(popupEditProfile, (data) => {
 });
 popupProfileForm.setEventListeners();
 
-const popupImageForm = new PopupWithForm(popupAddImage, () => {
-  const newCard = new Card(addImgName.value, addImgUrl.value, () => handleCardClick(newCard.getData()));
-  cardList.addReversedItem(newCard.generateCard());
+const popupImageForm = new PopupWithForm(popupAddImage, (data) => {
+  cardList.addReversedItem(createCard(data['image-name'], data['image-url']));
   popupImageForm.closePopup();
 })
 popupImageForm.setEventListeners();
@@ -64,7 +58,7 @@ Array.from(document.querySelectorAll('.popup__container')).forEach((formListElem
 addImgBtn.addEventListener('click', () => {
   addImgForm.reset();
   formValidators[addImgForm.getAttribute('name')].resetValidation();
-  imageFormPopup.openPopup();
+  popupImageForm.openPopup();
 });
 
 editButton.addEventListener('click', () => {
