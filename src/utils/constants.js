@@ -71,8 +71,8 @@ export const addImgBtn = document.querySelector('.profile__add-button');
 export const addImgForm = document.querySelector(popupAddImage).querySelector('.popup__container');
 export const formValidators = {};
 export const profilePicture = document.querySelector('.profile__picture');
-export const popupEditProfileImage = '.popup__edit-profile-image';
-export const profileImageForm = document.querySelector('.popup__edit-profile-image').querySelector('.popup__container');
+export const popupEditProfileImage = '.popup_edit-profile-image';
+export const profileImageForm = document.querySelector('.popup_edit-profile-image').querySelector('.popup__container');
 export const popupConfirmation = '.popup_delete-card';
 export const cardSelectors = {
   template: '.card-template',
