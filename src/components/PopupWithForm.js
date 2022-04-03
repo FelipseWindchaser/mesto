@@ -1,6 +1,6 @@
 import Popup from './Popup.js'
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, submitForm){
+  constructor(popupSelector, submitForm, loadingText){
     super(popupSelector)
     this._submitForm = submitForm;
     this._defaultTitle = this._popup.querySelector('.popup__form-field_type_name');
@@ -8,6 +8,8 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._popup.querySelectorAll('.popup__form-field');
     this._formValues = {};
     this._form = this._popup.querySelector('.popup__container');
+    this._formButton = this._popup.querySelector('.popup__form-button');
+    this._loadingText = loadingText;
   }
 
   _getInputValues() {
@@ -17,6 +19,14 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  _renderLoading(isLoading) {
+    if (isLoading) {
+      this._formButton.textContent = this._loadingText.isLoading;
+    } else {
+      this._formButton.textContent = this._loadingText.notLoading;
+    }
+  }
+
   setDefaultParams(data) {
     this._defaultTitle.value = data.name; 
     this._defaultInfo.value = data.description;
@@ -24,8 +34,12 @@ export default class PopupWithForm extends Popup {
 
   _handleSubmit(evt) {
     evt.preventDefault();
-    this._submitForm(this._getInputValues());
-    this.closePopup();
+    this._renderLoading(true);
+    this._submitForm(this._getInputValues())
+      .finally(() => {
+        setTimeout(() => this._renderLoading(false), 500);
+        this.closePopup()
+      })
   }
 
   setEventListeners() {

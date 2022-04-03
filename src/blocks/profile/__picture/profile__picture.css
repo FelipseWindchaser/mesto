@@ -1,11 +1,13 @@
 .profile__picture {
   max-width: 120px;
-  max-height: 120px;
-  margin: 40px 30px 50px 0;
+  min-height: 120px;
+  cursor: pointer;
+  width: 100%;
+  object-fit: cover;
 }
+
 @media screen and (max-width: 980px) {
   .profile__picture {
-    margin: 42px 0 0;
     align-self: center;
   }
 }

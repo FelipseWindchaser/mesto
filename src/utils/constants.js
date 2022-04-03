@@ -61,7 +61,7 @@ export const validatorSettings = {
 export const editButton = document.querySelector('.profile__edit-button');
 export const popupEditProfile = '.popup_edit-profile';
 export const popupPicture = '.popup-picture';
-export const userInfoSelectors = {name: '.profile__title', info: '.profile__subtitle'};
+export const userInfoSelectors = {name: '.profile__title', info: '.profile__subtitle', avatar: '.profile__picture'};
 export const profileForm = document.querySelector('.popup__container');
 export const editTitle = document.querySelector(popupEditProfile).querySelector('.popup__form-field_type_name');
 export const editInfo = document.querySelector(popupEditProfile).querySelector('.popup__form-field_type_info');
@@ -70,7 +70,10 @@ export const popupAddImage = '.popup_add-image';
 export const addImgBtn = document.querySelector('.profile__add-button');
 export const addImgForm = document.querySelector(popupAddImage).querySelector('.popup__container');
 export const formValidators = {};
-
+export const profilePicture = document.querySelector('.profile__picture');
+export const popupEditProfileImage = '.popup__edit-profile-image';
+export const profileImageForm = document.querySelector('.popup__edit-profile-image').querySelector('.popup__container');
+export const popupConfirmation = '.popup_delete-card';
 export const cardSelectors = {
   template: '.card-template',
   image: '.photos__item',
@@ -81,4 +84,16 @@ export const cardSelectors = {
   caption: '.photos__caption',
   popupCaption: '.popup-picture__caption',
   popupImage: '.popup-picture__item',
+  likesCounter: '.photos__likes-counter',
+  deleteBtnActive: 'photos__delete-button_active',
 };
+
+export const popupLoadingSaveBtn = {
+  isLoading: 'Сохранение...',
+  notLoading: 'Сохранить'
+}
+
+export const popupLoadingCreateBtn = {
+  isLoading: 'Создание...',
+  notLoading: 'Создать'
+}

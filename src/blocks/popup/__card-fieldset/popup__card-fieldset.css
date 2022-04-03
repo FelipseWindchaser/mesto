@@ -1,0 +1,8 @@
+.popup__card-fieldset {
+  min-height: 181px;
+}
+@media screen and (max-width: 980px) {
+  .popup__card-fieldset {
+    min-height: 154px;
+  }
+}

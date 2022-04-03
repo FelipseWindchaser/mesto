@@ -14,7 +14,9 @@
   </header>
   <main class="main-content">
     <section class="profile">
-      <img class="profile__picture" src="./images/profile__picture.png" alt="Аватар">
+      <div class="profile__picture-container">
+        <img class="profile__picture" src="./images/profile__picture.png" alt="Аватар">
+      </div>
       <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" aria-label="Редактировать" type="button"></button>
@@ -38,7 +40,10 @@
       <button class="photos__delete-button" aria-label="Удалить картинку" type="button"></button>
       <div class="photos__description">
         <h2 class="photos__caption">Место</h2>
-        <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
+        <div class="photos__likes-container">
+          <button class="photos__like-button" aria-label="Мне нравится" type="button"></button>
+          <span class="photos__likes-counter">0</span>
+        </div>
       </div>
     </article>
   </template>
@@ -61,6 +66,30 @@
       <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
     </form>
   </div>
+  <div class="popup popup_delete-card">
+    <div class="popup__overlay"></div>
+    <form class="popup__container popup__container_input-number_zero" name="card" novalidate>
+      <fieldset class="popup__form popup__card-fieldset">
+        <h3 class="popup__title popup__title_margin-bottom_short">Вы уверены?</h3>
+        <button class="popup__form-button popup__form-button_margin-bottom_none popup__form-button_margin-top_none" type="submit" name="popup__form-button">Да</button>
+      </fieldset>
+      <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
+    </form>
+  </div>
+  <div class="popup popup__edit-profile-image">
+    <div class="popup__overlay"></div>
+    <form class="popup__container popup__container_input-number_one profile-image-form" name="profile-image" novalidate>
+      <fieldset class="popup__form popup__profile-image-fieldset">
+        <h3 class="popup__title popup__title_margin-bottom_medium">Обновить аватар</h3>
+        <label class="popup__input-container">        
+          <input class="popup__form-field profile-input popup__form-field_type_info" type="url" name="profile-url" placeholder="Введите ссылку на картинку" minlength="2" maxlength="200" required>
+          <span class="popup__form-error profile-url-error"></span>
+        </label>
+        <button class="popup__form-button popup__form-button_margin-bottom_none" type="submit" name="popup__form-button">Сохранить</button>
+      </fieldset>
+      <button class="popup__close-button" aria-label="Закрыть" type="button"></button>
+    </form>
+    </div>
   <div class="popup popup_add-image">
     <div class="popup__overlay"></div>
     <form class="popup__container" name="image" novalidate>
