@@ -4,77 +4,51 @@ export default class Api {
     this._headers = options.headers;
     this._token = options.headers.authorization;
   }
-
-  _fetchGet(targetUrl) {
-    return fetch(`${this._baseUrl}/${targetUrl}`, { headers: this._headers })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-  }
   
-  getInitialCards() {
-    return this._fetchGet('cards');
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json()
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUserInfo() {
-    return this._fetchGet('users/me');
-  }
-
-  _fetchWithBody(targetUrl, data, method) {
+  _fetch(targetUrl, method, data) {
     return fetch(`${this._baseUrl}/${targetUrl}`, {
       method: method,
       headers: this._headers,
-      body: JSON.stringify(data)
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+      body: data ? JSON.stringify(data) : null
+    }).then(this._checkResponse);
+  }
+  
+  getInitialCards() {
+    return this._fetch('cards', 'GET');
+  }
+
+  getUserInfo() {
+    return this._fetch('users/me', 'GET');
   }
 
   editProfileInfo(data) {
-    return this._fetchWithBody('users/me',
-      {
-        name: data['profile-name'],
-        about: data['profile-info']
-      }, 'PATCH')
+    return this._fetch('users/me', 'PATCH', data)
   }
 
   editProfileImage(data) {
-    return this._fetchWithBody('users/me/avatar', { avatar: data }, 'PATCH')
+    return this._fetch('users/me/avatar', 'PATCH', { avatar: data })
   }
 
   addNewCards(data) {
-    return this._fetchWithBody('cards', data, 'POST')
-  }
-
-  _fetchWithoutBody(targetUrl, method) {
-    return fetch(`${this._baseUrl}/${targetUrl}`, {
-      method: method,
-      headers: this._headers
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    return this._fetch('cards', 'POST', data)
   }
 
   addLike(cardId) {
-    return this._fetchWithoutBody(`cards/${cardId}/likes`, 'PUT');
+    return this._fetch(`cards/${cardId}/likes`, 'PUT');
   }
 
   removeLike(cardId) {
-    return this._fetchWithoutBody(`cards/${cardId}/likes`, 'DELETE');
+    return this._fetch(`cards/${cardId}/likes`, 'DELETE');
   }
 
   removeCard(cardId) {
-    return this._fetchWithoutBody(`cards/${cardId}`, 'DELETE');
+    return this._fetch(`cards/${cardId}`, 'DELETE');
   }
 }

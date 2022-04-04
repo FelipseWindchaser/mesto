@@ -1,5 +1,5 @@
 export default class Section {
-  constructor({renderer}, containerSelector) {
+  constructor(renderer, containerSelector) {
     this._container = document.querySelector(containerSelector);
     this._renderer = renderer;
   }
@@ -9,12 +9,14 @@ export default class Section {
   }
   
   addReversedItem(item) {
-    this._container.prepend(item);
+    console.log(item)
+    const card = this._renderer(item)
+    this._container.prepend(card);
   }
 
   loadItems(items) {
     items.forEach((item) => {
-      this._renderer(item);
+      this.addItem(this._renderer(item));
     });
   };
 }

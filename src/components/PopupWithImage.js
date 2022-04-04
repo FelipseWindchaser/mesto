@@ -9,7 +9,7 @@ export default class PopupWithImage extends Popup {
   openPopup(data) {
     this._imageText.textContent = data.text;
     this._imageUrl.src = data.url;
-    this._imageUrl.alt = 'Картинка ' + data.text;
+    this._imageUrl.alt = 'контент ' + data.text;
     super.openPopup();
   }
 } 

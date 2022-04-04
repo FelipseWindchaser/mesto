@@ -3,8 +3,6 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, submitForm, loadingText){
     super(popupSelector)
     this._submitForm = submitForm;
-    this._defaultTitle = this._popup.querySelector('.popup__form-field_type_name');
-    this._defaultInfo = this._popup.querySelector('.popup__form-field_type_info');
     this._inputList = this._popup.querySelectorAll('.popup__form-field');
     this._formValues = {};
     this._form = this._popup.querySelector('.popup__container');
@@ -27,19 +25,23 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  setDefaultParams(data) {
-    this._defaultTitle.value = data.name; 
-    this._defaultInfo.value = data.description;
+  setInputValues(data) {
+    this._inputList.forEach((input) => {
+      input.value = data[input.name];
+    });
+    console.log(this._inputList, data)
   }
 
   _handleSubmit(evt) {
     evt.preventDefault();
     this._renderLoading(true);
     this._submitForm(this._getInputValues())
-      .finally(() => {
-        setTimeout(() => this._renderLoading(false), 500);
+      .then(() => {
         this.closePopup()
       })
+      .finally(() => {
+        setTimeout(() => this._renderLoading(false), 500);
+      });
   }
 
   setEventListeners() {

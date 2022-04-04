@@ -22,9 +22,11 @@ export default class PopupWithConfirmation extends Popup {
   _handleSubmit(evt) {
     evt.preventDefault();
     this._removeCardApi(this._cardId)
-    .then(res => console.log(res))
+    .then(res => {
+      console.log(res)
+      this._element.remove();
+      this.closePopup();
+    })
     .catch(err => console.log(err))
-    this._element.remove();
-    this.closePopup();
   }
 } 

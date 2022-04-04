@@ -19,13 +19,15 @@ import {
   profileImageForm,
   popupConfirmation,
   popupLoadingSaveBtn,
-  popupLoadingCreateBtn
+  popupLoadingCreateBtn,
+  cardSelectors
 } from '../utils/constants.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import Api from '../components/Api.js';
+
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
   headers: {
@@ -34,31 +36,45 @@ const api = new Api({
   }
 });
 
-const cardList = new Section({renderer: (item) => {
-  cardList.addItem(createCard(item));
-}}, cardsContainer);
+const cardList = new Section(createCard, cardsContainer);
 
-api.getUserInfo()
-  .then(res => {
-    api.getInitialCards()
-    .then(elementList => {
-      cardList.loadItems(elementList)
-    })
-    .catch(err => console.log(err))
-    userInfo.setUserInfo(res)
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData);
+    cardList.loadItems(cards);
   })
-  .catch(err => console.log(err))
+  .catch(err => console.log(err));
 
 const picturePopup = new PopupWithImage(popupPicture); 
 picturePopup.setEventListeners();
+
+function handleLike(card) {
+  if(!this._likeBtn.classList.contains(cardSelectors.toggleLikeBtn)) {
+    api.addLike(card._id)
+      .then((res) => {
+        card.countLikes(res.likes);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+  } else {
+    api.removeLike(card._id)
+      .then((res) => {
+        card.countLikes(res.likes);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+  }
+  
+}
 
 function createCard(item) {
   const card = new Card(
     item, 
     (targetCard) => picturePopup.openPopup(targetCard), 
     (targetCard, cardId) => confirmationPopup.openPopup(targetCard, cardId),
-    (id) => api.addLike(id),
-    (id) => api.removeLike(id),
+    handleLike,
     userInfo.getUserInfo()._id
     );
   return card.generateCard();
@@ -86,7 +102,7 @@ profilePicturePopup.setEventListeners();
 const popupImageForm = new PopupWithForm(popupAddImage, (data) => {
   return api.addNewCards({name: data['image-name'], link: data['image-url']})
     .then(res => {
-      cardList.addReversedItem(createCard(res))
+      cardList.addReversedItem(res)
     })
     .catch(err => console.log(err))
 }, popupLoadingCreateBtn)
@@ -100,13 +116,12 @@ Array.from(document.querySelectorAll('.popup__container')).forEach((formListElem
 });
 
 addImgBtn.addEventListener('click', () => {
-  addImgForm.reset();
   formValidators[addImgForm.getAttribute('name')].resetValidation();
   popupImageForm.openPopup();
 });
 
 editButton.addEventListener('click', () => {
-  popupProfileForm.setDefaultParams(userInfo.getUserInfo());
+  popupProfileForm.setInputValues(userInfo.getUserInfo());
   formValidators[profileForm.getAttribute('name')].resetValidation();
   popupProfileForm.openPopup();
 });

@@ -1,6 +1,6 @@
-import {cardSelectors, cardSelectors as selectors} from '../utils/constants.js'
+import {cardSelectors as selectors} from '../utils/constants.js'
 export class Card {
-  constructor(item, openPopup, confirmDeletionPopup, likeAdd, likeRemove, ownerId) {
+  constructor(item, openPopup, confirmDeletionPopup, likeHandler, ownerId) {
     this._name = item.name;
     this._link = item.link;
     this._id = item._id;
@@ -13,13 +13,14 @@ export class Card {
     this._likesCounter = this._element.querySelector(selectors.likesCounter);
     this._deleteBtn = this._element.querySelector(selectors.deleteBtn);
     this._confirmDeletionPopup = confirmDeletionPopup;
-    this._likeAdd = likeAdd;
-    this._likeRemove = likeRemove;
+    this._likeHandler = likeHandler;
     this._ownerId = ownerId;
     this._cardOwnerId = item.owner._id;
   }
 
-  _countLikes() {
+  countLikes(likes) {
+    this._likes = likes;
+    this._likeBtn.classList.toggle(selectors.toggleLikeBtn)
     this._likesCounter.textContent = this._likes.length;
   }
 
@@ -28,8 +29,7 @@ export class Card {
     this._cardImg.alt = 'Картинка ' + this._name;
     this._cardCaption.textContent = this._name;
     this._setEventListeners();
-    this._countLikes();
-    this._deleteOwnCard();
+    this._likesCounter.textContent = this._likes.length;
     if (this._likes.some((element) => element._id === this._ownerId)) {
       this._likeBtn.classList.add(selectors.toggleLikeBtn);
     }
@@ -44,27 +44,8 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._likeBtn.addEventListener('click', () => this._handleLike());
+    this._likeBtn.addEventListener('click', () =>  this._likeHandler(this));
     this._cardImg.addEventListener('click', () => this._openPopup({text: this._name, url: this._link}));
-  }
-
-  _handleLike() {
-    if(!this._likeBtn.classList.contains(selectors.toggleLikeBtn)) {
-      this._likeAdd(this._id)
-      .then(res => {
-        this._likes = res.likes;
-        this._countLikes();
-        this._likeBtn.classList.toggle(selectors.toggleLikeBtn)
-      })
-      .catch(err => console.log(err))
-    } else {
-      this._likeRemove(this._id)
-      .then(res => {
-        this._likes = res.likes;
-        this._countLikes();
-        this._likeBtn.classList.toggle(selectors.toggleLikeBtn)
-      })
-      .catch(err => console.log(err))
-    }
+    this._deleteOwnCard();
   }
 }
